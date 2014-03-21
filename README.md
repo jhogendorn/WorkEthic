@@ -15,15 +15,22 @@ You might find it useful also.
    * `172.0.0.2 i.imgur.com`
    * `172.0.0.2 facebook.com`
 
-### Customisation
+#### Scripts
 
-I use [Planscope](https://planscope.io) to manage my work, and you might find it useful
-too. If you don't, open up index.html and change the url you redirect to. Might I
-suggest [Trello](http://trello.com)?
+`install.sh` and bretherin are meant to be idempotent, and create a build directory.
+`build.sh` is the "*build script*" (I use the term loosely), `config.sh` is generated
+from `config-dist.sh` and ignored by git, use it for customisations.
 
-This might become some sort of config in future, if someone wants to give me a nice way to handle the deployment variables in this without utilising a full deployment tool. I'm using `sed` to manage apache.conf currently but that has a huge code smell.
+#### Customisation
+
+I use [Planscope](https://planscope.io) to manage my work, if you'd rather use something
+else, edit `config.sh`. Might I suggest [Trello](http://trello.com)?
+
 
 ### But how do I use these sites otherwise?
+
+I've elected to do no hosts management in this project, as its out of scope and I'm sure
+everyone has their own tooling in this regard.
 
 Well, you could write a cron job to activate/deactivate these host lines at various
 times, that would be neat. Or even just a big red button to push for 'procrastination mode!'.
