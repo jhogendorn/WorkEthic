@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<style>
+			html {
+				background: #000;
+			}
+			#motivation {
+				width: 878px;
+				height: 527px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -263.5px 0 0 -439px;
+				background: url('/motivator.png') no-repeat;
+			}
+			#countdown {
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				bottom: 0px;
+				right: 0px
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function () {
+				setTimeout(function () {
+					window.location = "https://planscope.io/projects/";
+				}, 3000);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="motivation"></div>
+		<img id="countdown" src="/countdown.gif"></img>
+	</body>
+</html>
