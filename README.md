@@ -6,7 +6,17 @@ todo list.
 
 You might find it useful also.
 
+
 ### Installation
+
+#### OSX only, sorry.
+
+This relies on the default osx apache install, and also how osx utilises persistent
+loopbacks. I don't use linux as a desktop, so I'm not going to support this in the
+installer script. PR's for Linux welcome. Otherwise, a manual install is dead simple,
+run `build.sh` and use that for your local implementation.
+
+#### Install
 
 1. `git clone https://github.com/jhogendorn/WorkEthic.git workethic && popd`
 2. `./install.sh`
