@@ -2,6 +2,7 @@
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 BASEPATH=$SCRIPTPATH
+BUILDPATH=$SCRIPTPATH/build
 
 info () {
   printf "  [ \033[00;34m..\033[0m ] $1 \n"
@@ -27,12 +28,15 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-if [ ! -f /etc/apache2/users/workethic.conf ]; then
-  info "Installing Apache2 Config"
+info "Building WorkEthic"
+source $BASEPATH/build.sh
+
+APACHECONF=/etc/apache2/users/workethic.conf
+
+if [ ! -f $APACHECONF ]; then
+  info "Linking Apache2 Config"
   # We link because this config may change or be updated
-  sed -i "" -e "s@DocumentRoot \".*\"@DocumentRoot \"$BASEPATH\"@g" $BASEPATH/apache2.conf #OSX specific replace in place
-  sed -i "" -e "s@Directory \".*\"@Directory \"$BASEPATH\"@g" $BASEPATH/apache2.conf #OSX specific replace in place
-  sudo ln -s $BASEPATH/apache2.conf /etc/apache2/users/workethic.conf
+  sudo ln -s $BUILDPATH/etc/apache2.conf $APACHECONF
 fi
 
 info "Ensuring Apache starts on boot"
@@ -49,7 +53,7 @@ case "$action" in
     info "Copying loopback alias"
     # We copy because this file will not change in implementation.
     # Now that I've said that, it totally will. You just watch.
-    sudo cp $BASEPATH/loopback.plist /Library/LaunchDaemons/com.lo1.plist
+    sudo cp $BUILDPATH/etc/loopback.plist /Library/LaunchDaemons/com.lo1.plist
     sudo launchctl load -w /Library/LaunchDaemons/com.lo1.plist
     ;;
   * )
@@ -58,6 +62,6 @@ esac
 
 info "Restarting Apache"
 
-apachectl restart > /dev/null 2>&1
+sudo apachectl restart > /dev/null 2>&1
 
 success "Finished. Remember to add blocked sites to your /etc/hosts by pointing them at 172.0.0.2"
