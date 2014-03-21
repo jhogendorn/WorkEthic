@@ -1,8 +1,8 @@
 <VirtualHost 127.0.0.2:80>
-  DocumentRoot "/Users/jhogendorn/Code/workethic/"
+  DocumentRoot "%%PATH%%"
   RewriteLog "/var/log/apache2/rewrite.log"
   RewriteLogLevel 3
-  <Directory "/Users/jhogendorn/Code/workethic/">
+  <Directory "%%PATH%%">
     allow from all
     AllowOverride All
     Options +Indexes
