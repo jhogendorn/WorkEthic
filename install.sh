@@ -30,9 +30,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 if [ ! -f /etc/apache2/users/workethic.conf ]; then
   info "Installing Apache2 Config"
   # We link because this config may change or be updated
-  rm $BASEPATH/apache2.conf
-  cp $BASEPATH/apache2.conf.tmpl $BASEPATH/apache2.conf
-  sed -i "" -e "s@%%PATH%%@$BASEPATH@g" $BASEPATH/apache2.conf #OSX specific replace in place
+  sed -i "" -e "s@DocumentRoot \".*\"@DocumentRoot \"$BASEPATH\"@g" $BASEPATH/apache2.conf #OSX specific replace in place
+  sed -i "" -e "s@Directory \".*\"@Directory \"$BASEPATH\"@g" $BASEPATH/apache2.conf #OSX specific replace in place
   sudo ln -s $BASEPATH/apache2.conf /etc/apache2/users/workethic.conf
 fi
 
