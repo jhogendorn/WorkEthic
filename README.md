@@ -18,7 +18,7 @@ You might find it useful also.
 #### Scripts
 
 `install.sh` and bretherin are meant to be idempotent, and create a build directory.
-`build.sh` is the "*build script*" (I use the term loosely), `config.sh` is generated
+`build.sh` is the *'build script'* (I use the term loosely), `config.sh` is generated
 from `config-dist.sh` and ignored by git, use it for customisations.
 
 #### Customisation
